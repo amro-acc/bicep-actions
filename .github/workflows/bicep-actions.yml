@@ -9,7 +9,7 @@ on:
 env:
   ServiceConnectionName : 'ALZPipelineConnection'
   resourceGroupName : 'bicep-rg'
-  templateFile : '../../bicep-actions/main.bicep'
+  templateFile : 'main.bicep'
   RunNumber : '$(Build.BuildNumber)'
 
 jobs:
