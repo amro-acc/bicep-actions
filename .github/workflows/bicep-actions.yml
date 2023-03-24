@@ -28,7 +28,6 @@ jobs:
       with:
         inlineScript: |
           az --version
-          az bicep version
           az config set bicep.use_binary_from_path=false
           az bicep install
           az bicep upgrade
