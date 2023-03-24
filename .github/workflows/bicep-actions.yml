@@ -23,20 +23,11 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
  
-    - name: "Install Bicep"
-      uses: Azure/cli@v1
-      with:
-        inlineScript: |
-          az --version
-          az config set bicep.use_binary_from_path=false
-          az bicep install
-          az bicep upgrade
-          az bicep version
- 
-    - name: "What-If"
-      uses: Azure/cli@v1
-      with:
-        inlineScript: az deployment group what-if --resource-group ${{ env.resourceGroupName }} --template-file ${{ env.templateFile }} --parameters storagePrefix=mystore   storageSKU=Standard_LRS 
+    - name: 'What-If'
+      uses: azure/powershell@v1
+      with:
+        inlineScript: az deployment group what-if --resource-group ${{ env.resourceGroupName }} --template-file ${{ env.templateFile }} --parameters storagePrefix=mystore   storageSKU=Standard_LRS
+        azPSVersion: "latest"
  
     - name: deploy
       uses: azure/arm-deploy@v1
