@@ -27,8 +27,12 @@ jobs:
       uses: Azure/cli@v1
       with:
         inlineScript: |
+          az --version
+          az bicep version
           az config set bicep.use_binary_from_path=false
           az bicep install
+          az bicep upgrade
+          az bicep version
  
     - name: "What-If"
       uses: Azure/cli@v1
