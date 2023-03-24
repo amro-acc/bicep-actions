@@ -26,7 +26,9 @@ jobs:
     - name: "Install Bicep"
       uses: Azure/cli@v1
       with:
-        inlineScript: az bicep install
+        inlineScript: |
+          az config set bicep.use_binary_from_path=false
+          az bicep install
  
     - name: "What-If"
       uses: Azure/cli@v1
