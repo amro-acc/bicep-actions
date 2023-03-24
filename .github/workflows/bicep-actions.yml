@@ -11,7 +11,7 @@ env:
   resourceGroupName : 'bicep-rg'
   templateFile : 'main.bicep'
   RunNumber : '$(Build.BuildNumber)'
-
+ 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -22,7 +22,12 @@ jobs:
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-      
+ 
+    - name: "What-If"
+      uses: Azure/cli@v1
+      with:
+        inlineScript: az deployment group what-if --resource-group $(resourceGroupName) --template-file $(templateFile) --parameters storagePrefix=mystore   storageSKU=Standard_LRS 
+ 
     - name: deploy
       uses: azure/arm-deploy@v1
       with:
