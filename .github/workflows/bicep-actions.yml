@@ -26,7 +26,7 @@ jobs:
     - name: "What-If"
       uses: Azure/cli@v1
       with:
-        inlineScript: az deployment group what-if --resource-group $(resourceGroupName) --template-file $(templateFile) --parameters storagePrefix=mystore   storageSKU=Standard_LRS 
+        inlineScript: az deployment group what-if --resource-group ${{ env.resourceGroupName }} --template-file ${{ env.templateFile }} --parameters storagePrefix=mystore   storageSKU=Standard_LRS 
  
     - name: deploy
       uses: azure/arm-deploy@v1
